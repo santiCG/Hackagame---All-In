@@ -9,8 +9,12 @@ public class SpaceBarnacle : MonoBehaviour
     [Header("Effects")]
     public GameObject deathEffect;
 
+    private Rigidbody rb;
+
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeAll;
         currentHealth = maxHealth;
     }
 
@@ -26,11 +30,12 @@ public class SpaceBarnacle : MonoBehaviour
 
     void Die()
     {
-        if (deathEffect)
-        {
-            Instantiate(deathEffect, transform.position, transform.rotation);
-        }
+        //if (deathEffect)
+        //{
+        //    Instantiate(deathEffect, transform.position, transform.rotation);
+        //}
+        rb.constraints = RigidbodyConstraints.None;
 
-        Destroy(gameObject);
+        Destroy(gameObject, 3f);
     }
 }

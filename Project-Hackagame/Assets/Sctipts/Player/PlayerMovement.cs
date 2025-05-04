@@ -13,9 +13,13 @@ public class PlayerMovement : MonoBehaviour
 
     [Space]
     [Header("Movement Settings")]
+    public bool isWalking;
     public bool lockMovement;
     public float stopMagnitude = 0.1f;
     public GameObject posPoint;
+
+    [Header("Sound")]
+    public AudioSource audio;
 
     private float currentGas;
     private float lastInputTime;
@@ -77,6 +81,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (isUsingJetpack && currentGas > 0f)
         {
+            if(!audio.isPlaying)
+            {
+                audio.Play();
+            }
             Vector3 moveDir = new Vector3(planarInput.x, verticalInput, planarInput.y);
             rb.AddRelativeForce(moveDir * thrustForce, ForceMode.Acceleration);
             currentGas -= gasConsumptionRate * Time.fixedDeltaTime;
