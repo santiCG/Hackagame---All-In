@@ -165,9 +165,11 @@ MonoBehaviour:
   gasConsumptionRate: 1
   refillDelay: 2
   refillRate: 2
+  isWalking: 0
   lockMovement: 0
   stopMagnitude: 0.01
   posPoint: {fileID: 0}
+  audio: {fileID: 5563073826622344519}
 --- !u!114 &1622719803491981173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c90152802ac144a9cac5d14830005a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 6571346464739967352}
   interactionRange: 5
 --- !u!114 &2049414342712154417
 MonoBehaviour:
@@ -482,16 +484,16 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d4601e0325cb1544a80796c80af7e799, type: 3}
-  m_Resource: {fileID: 8300000, guid: d4601e0325cb1544a80796c80af7e799, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e8be11b1866750944a8b037f72714a18, type: 3}
+  m_Resource: {fileID: 8300000, guid: e8be11b1866750944a8b037f72714a18, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.604
+  m_Pitch: 0.5
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 100
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -1533,9 +1535,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 180557533655662575, guid: 930b7a19d446f4b4c9c810e37e84e625, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1851067939385736549}
-    - targetCorrespondingSourceObject: {fileID: 180557533655662575, guid: 930b7a19d446f4b4c9c810e37e84e625, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 239791909541063514}
   m_SourcePrefab: {fileID: 100100000, guid: 930b7a19d446f4b4c9c810e37e84e625, type: 3}
 --- !u!4 &3951046300256317333 stripped
 Transform:
@@ -1567,27 +1566,6 @@ MonoBehaviour:
   yLimits: {x: -0.7, y: 0.7}
   playerCamera: {fileID: 6571346464739967352}
   crossImage: {fileID: 0}
---- !u!114 &239791909541063514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4440337034012685615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06dea3a1158df28469e4af3c0a9966db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCamera: {fileID: 6571346464739967352}
-  windowRenderer: {fileID: 0}
-  handInteraction: {fileID: 1851067939385736549}
-  maskPropertyName: WindowMask
-  maskResolution: 512
-  brushSize: 10
-  cleanColor: {r: 1, g: 1, b: 1, a: 1}
-  dirtBrush: {fileID: 2800000, guid: f22ae4e7a75dbe048a46df39553e31db, type: 3}
-  dynamicMask: {fileID: 2800000, guid: 1e335b77ddb5cc245b0481f2e64431a2, type: 3}
 --- !u!1001 &8177660091456514030
 PrefabInstance:
   m_ObjectHideFlags: 0
