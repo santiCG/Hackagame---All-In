@@ -4,10 +4,12 @@ public class OutlineInteractuables : MonoBehaviour
 {
     [SerializeField] private Color outlineColor = Color.yellow;
     [SerializeField] private float outlineWidth = 5f;
-    private GameObject[] interactuables = GameObject.FindGameObjectsWithTag("Interactable");
+    private GameObject[] interactuables;
 
-    void Start()
+    private void Awake()
     {
+        interactuables = GameObject.FindGameObjectsWithTag("Interactable");
+
         foreach (GameObject interactable in interactuables)
         {
             if (interactable.GetComponent<Outline>() == null)
