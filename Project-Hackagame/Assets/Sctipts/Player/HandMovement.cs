@@ -30,6 +30,7 @@ public class HandMovement : MonoBehaviour
     public Transform positioningPoint;
 
     private bool isPositioningPlayer = false;
+    private bool playerCanMove = true;
     private Vector3 targetPlayerPosition;
     private Quaternion targetPlayerRotation;
     private float positioningSpeed = 2f;
@@ -38,6 +39,11 @@ public class HandMovement : MonoBehaviour
     private bool isInteracting = false;
 
     public bool PlayerInteracting => isInteracting;
+
+    public bool IsPlayerInteracting()
+    {
+        return isInteracting && !playerCanMove;
+    }
 
     private void Start()
     {
@@ -94,6 +100,7 @@ public class HandMovement : MonoBehaviour
 
                 // Activa la transición
                 isPositioningPlayer = true;
+                playerCanMove = false;
             }
 
             // "Pegar" la mano al objeto

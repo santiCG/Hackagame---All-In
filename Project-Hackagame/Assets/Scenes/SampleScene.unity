@@ -803,6 +803,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 180557533655662575, guid: 930b7a19d446f4b4c9c810e37e84e625, type: 3}
       insertIndex: -1
       addedObject: {fileID: 850193566}
+    - targetCorrespondingSourceObject: {fileID: 180557533655662575, guid: 930b7a19d446f4b4c9c810e37e84e625, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 850193567}
   m_SourcePrefab: {fileID: 100100000, guid: 930b7a19d446f4b4c9c810e37e84e625, type: 3}
 --- !u!4 &850193564 stripped
 Transform:
@@ -835,6 +838,27 @@ MonoBehaviour:
   playerCamera: {fileID: 330585545}
   crossImage: {fileID: 985343938}
   positioningPoint: {fileID: 1260466929}
+--- !u!114 &850193567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850193565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06dea3a1158df28469e4af3c0a9966db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 330585545}
+  windowRenderer: {fileID: 1818676184}
+  handInteraction: {fileID: 850193566}
+  maskPropertyName: WindowMask
+  maskResolution: 512
+  brushSize: 10
+  cleanColor: {r: 1, g: 1, b: 1, a: 1}
+  dirtBrush: {fileID: 2800000, guid: f22ae4e7a75dbe048a46df39553e31db, type: 3}
+  dynamicMask: {fileID: 2800000, guid: 1e335b77ddb5cc245b0481f2e64431a2, type: 3}
 --- !u!1 &985343936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,7 +1659,7 @@ GameObject:
   - component: {fileID: 1818676184}
   - component: {fileID: 1818676183}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Window
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
