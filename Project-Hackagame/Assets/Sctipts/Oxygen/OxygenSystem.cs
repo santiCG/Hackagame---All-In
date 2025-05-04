@@ -13,6 +13,9 @@ public class OxygenSystem : MonoBehaviour
     public delegate void OxygenDepleted();
     public event OxygenDepleted OnOxygenDepleted;
 
+    [SerializeField] private DamageUI_VFX damageUIVFX;
+    [SerializeField] private GameManager gameManager;
+
     private void Start()
     {
         currentOxygen = maxOxygen;
@@ -20,20 +23,32 @@ public class OxygenSystem : MonoBehaviour
 
     private void Update()
     {
-        if(!isInSafeZone){
+        if (!isInSafeZone)
+        {
             currentOxygen -= oxygenDepletionRate * Time.deltaTime;
-
             currentOxygen = Mathf.Clamp(currentOxygen, 0, maxOxygen);
+
+            // Update the damage effect based on oxygen level
+            if (damageUIVFX != null)
+            {
+                damageUIVFX.UpdateDamageEffect(currentOxygen, maxOxygen);
+            }
+
+            // Check if oxygen is depleted
+            if (currentOxygen <= 0)
+            {
+                currentOxygen = 0;
+                OnOxygenDepleted?.Invoke();
+
+                // Notify the GameManager of the player's death
+                if (gameManager != null)
+                {
+                    gameManager.HandlePlayerDeath();
+                }
+            }
         }
 
         UpdateOxygenUI();
-
-        // Check if oxygen is depleted
-        if (currentOxygen <= 0)
-        {
-            currentOxygen = 0;
-            OnOxygenDepleted?.Invoke();
-        }
     }
 
     public void RefillOxygen(float amount)

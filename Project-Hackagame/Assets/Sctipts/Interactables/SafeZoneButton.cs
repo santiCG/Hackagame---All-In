@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class SafeZoneButton : MonoBehaviour, Iinteractable
 {
+    [SerializeField] private SafeZone safeZone; 
     [SerializeField] private Animator safeZoneAnim;
     public bool isSafeZoneActive = false;
 
-    public Outline outline;
-    [SerializeField] private SafeZone safeZone; // Reference to the SafeZone script
+    [HideInInspector] public Outline outline;
 
     private void Awake()
     {
+        safeZone = FindFirstObjectByType<SafeZone>();
         outline = GetComponent<Outline>();
         outline.enabled = false;
     }
@@ -20,16 +21,12 @@ public class SafeZoneButton : MonoBehaviour, Iinteractable
         {
             safeZoneAnim.SetTrigger("ActivateSafeZone");
             isSafeZoneActive = true;
+            safeZone.ToggleSafeZone();
         }
         else
         {
             safeZoneAnim.SetTrigger("DeactivateSafeZone");
             isSafeZoneActive = false;
-        }
-
-        // Notify the SafeZone to toggle its state
-        if (safeZone != null)
-        {
             safeZone.ToggleSafeZone();
         }
     }

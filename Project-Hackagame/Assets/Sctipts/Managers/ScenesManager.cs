@@ -47,6 +47,23 @@ public class ScenesManager : MonoBehaviour
         }
     }
 
+    public void RestartScene()
+    {
+        if (fadeImage != null)
+        {
+            fadeImage.gameObject.SetActive(true);
+            LeanTween.alpha(fadeImage.rectTransform, 1f, 1f).setOnComplete(() =>
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            });
+        }
+        else
+        {
+            Debug.LogWarning("Fade image is not assigned!");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+
     // Method to quit the game with a fade-out effect
     public void QuitGame()
     {
