@@ -7,6 +7,7 @@ using DG.Tweening;
 public class WindowManager : MonoBehaviour
 {
     [Header("UI Elements")]
+    [SerializeField] private GameManager gameManager; // Reference to the GameManager script
     [SerializeField] private TextMeshProUGUI descriptionText; // Text for the description of the objective
     [SerializeField] private TextMeshProUGUI objectivesText; // Text for the number of objectives (e.g., "0/4")
     [SerializeField] private RectTransform objectiveUI; // The UI element to push to the side when completed
@@ -62,6 +63,7 @@ public class WindowManager : MonoBehaviour
             .SetEase(Ease.InOutQuad);        
         }
 
+        gameManager.CompleteObjective();
         Debug.Log("All windows cleaned! Objectives completed.");
     }
 }

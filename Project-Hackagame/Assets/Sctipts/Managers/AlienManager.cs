@@ -7,6 +7,7 @@ using DG.Tweening;
 public class AlienManager : MonoBehaviour
 {
     [Header("UI Elements")]
+    [SerializeField] private GameManager gameManager; // Reference to the GameManager script
     [SerializeField] private TextMeshProUGUI descriptionText; // Text for the description of the objective
     [SerializeField] private TextMeshProUGUI objectivesText; // Text for the number of objectives (e.g., "0/5")
     [SerializeField] private RectTransform objectiveUI; // The UI element to push to the side when completed
@@ -62,6 +63,7 @@ public class AlienManager : MonoBehaviour
                 .SetEase(Ease.InOutQuad); // Smooth easing for the animation
         }
 
+        gameManager.CompleteObjective();
         Debug.Log("All barnacles eliminated! Objectives completed.");
     }
 }
