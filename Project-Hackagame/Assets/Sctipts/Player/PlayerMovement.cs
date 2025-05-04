@@ -29,9 +29,12 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isUsingJetpack = false;
 
+    private PlayerRotation playerRotation;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        playerRotation = GetComponentInParent<PlayerRotation>();
         currentGas = maxGas;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -95,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
             currentGas = Mathf.Clamp(currentGas, 0, maxGas);
         }
 
-        if (rb.linearVelocity.magnitude < stopMagnitude)
+        if (rb.linearVelocity.magnitude < stopMagnitude && rb.linearVelocity != Vector3.zero)
         { 
             rb.linearVelocity = Vector3.zero;
         }

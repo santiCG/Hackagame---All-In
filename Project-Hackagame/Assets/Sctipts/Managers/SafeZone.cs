@@ -7,6 +7,9 @@ public class SafeZone : MonoBehaviour
     [SerializeField] private Collider safeZoneCollider;
     [SerializeField] private GameObject player;
 
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private PlayerRotation playerRotation;
+
     private void Awake()
     {
         if (safeZoneButton == null)
@@ -20,6 +23,8 @@ public class SafeZone : MonoBehaviour
         }
 
         safeZoneCollider = GetComponent<Collider>();
+        rb = player.GetComponentInParent<Rigidbody>();
+        playerRotation = player.GetComponent<PlayerRotation>();
     }
 
     private void Start()
@@ -50,14 +55,16 @@ public class SafeZone : MonoBehaviour
     private void ActivateSafeZone()
     {
         oxygenSystem.EnterSafeZone();
-        DisablePlayerGravity();
+        //DisablePlayerGravity();
+        SetGravityState(true);
         Debug.Log("Safe zone activated. Gravity disabled.");
     }
 
     private void DeactivateSafeZone()
     {
         oxygenSystem.ExitSafeZone();
-        EnablePlayerGravity();
+        //EnablePlayerGravity();
+        SetGravityState(false);
         Debug.Log("Safe zone deactivated. Gravity enabled.");
     }
 
@@ -81,5 +88,31 @@ public class SafeZone : MonoBehaviour
             playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationZ;
 
         }
+    }
+
+    public void SetGravityState(bool isInGravityZone)
+    {
+        //rb.useGravity = isInGravityZone;
+
+        //if (isInGravityZone)
+        //{
+        //    // Bloquear solo rotación en Z
+        //    rb.constraints = RigidbodyConstraints.FreezePositionY;
+
+        //    // Corregimos rotación en Z para evitar que quede ladeado
+        //    Vector3 fixedRotation = transform.rotation.eulerAngles;
+        //    playerRotation.gameObject.transform.rotation = Quaternion.Euler(fixedRotation.x, fixedRotation.y, 0f);
+
+        //    if (playerRotation != null)
+        //        playerRotation.SetRotationXYLock(true);
+        //}
+        //else
+        //{
+        //    // Permitir rotación libre
+        //    rb.constraints = RigidbodyConstraints.None;
+
+        //    if (playerRotation != null)
+        //        playerRotation.SetRotationXYLock(false);
+        //}
     }
 }

@@ -7,6 +7,7 @@ public class PlayerRotation : MonoBehaviour
     public bool lockRotation;
     public float rotationSpeed = 2f;
 
+    public bool lockXZRotation = false;
     private bool isRotating = false;
     private Vector2 lookInput;
 
@@ -16,6 +17,13 @@ public class PlayerRotation : MonoBehaviour
     {
         IsRotationLocked = locked;
     }
+
+
+    public void SetRotationXYLock(bool state)
+    {
+        lockXZRotation = state;
+    }
+
 
     public void OnRotate(InputAction.CallbackContext context)
     {
@@ -44,6 +52,7 @@ public class PlayerRotation : MonoBehaviour
         float pitch = -lookInput.y * rotationSpeed * Time.deltaTime; // Vertical mouse → Pitch
         float yaw = -lookInput.x * rotationSpeed * Time.deltaTime;  // Horizontal mouse → Yaw
         
+
         if (!isRotating) 
         {
             transform.Rotate(Vector3.up, defaultRotation, Space.Self); // Yaw (Y axis)
@@ -54,6 +63,5 @@ public class PlayerRotation : MonoBehaviour
             transform.Rotate(Vector3.right, pitch, Space.Self); // Pitch (X axis)
             transform.Rotate(Vector3.forward, yaw, Space.Self); // Yaw (Z axis)
         }
-
     }
 }
