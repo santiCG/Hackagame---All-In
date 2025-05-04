@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     public float refillDelay = 3f;
     public float refillRate = 20f;
 
+    [Space]
+    public float stopMagnitude = 0.1f;
+
     private float currentGas;
     private float lastInputTime;
     private Rigidbody rb;
@@ -71,6 +74,11 @@ public class PlayerMovement : MonoBehaviour
         {
             currentGas += refillRate * Time.fixedDeltaTime;
             currentGas = Mathf.Clamp(currentGas, 0, maxGas);
+        }
+
+        if (rb.linearVelocity.magnitude < stopMagnitude)
+        { 
+            rb.linearVelocity = Vector3.zero;
         }
     }
 
