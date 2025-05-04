@@ -12,7 +12,10 @@ public class PlayerMovement : MonoBehaviour
     public float refillRate = 20f;
 
     [Space]
+    [Header("Movement Settings")]
+    public bool lockMovement;
     public float stopMagnitude = 0.1f;
+    public GameObject posPoint;
 
     private float currentGas;
     private float lastInputTime;
@@ -52,6 +55,13 @@ public class PlayerMovement : MonoBehaviour
         CheckJetpackUsage();
     }
 
+    public bool IsMovementLocked { get; private set; } = false;
+
+    public void SetMovementLock(bool locked)
+    {
+        IsMovementLocked = locked;
+    }
+
     private void CheckJetpackUsage()
     {
         isUsingJetpack = planarInput != Vector2.zero || verticalInput != 0f;
@@ -63,6 +73,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (IsMovementLocked) return;
+
         if (isUsingJetpack && currentGas > 0f)
         {
             Vector3 moveDir = new Vector3(planarInput.x, verticalInput, planarInput.y);
@@ -85,5 +97,14 @@ public class PlayerMovement : MonoBehaviour
     public float GetCurrentGasPercentage()
     {
         return currentGas / maxGas;
+    }
+
+    public void MoveToInteractionPoint()
+    {
+        Vector3.MoveTowards(transform.position, posPoint.transform.position, 0.1f);
+        if(Vector3.Distance(transform.position, posPoint.transform.position) < 0.02f)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
     }
 }

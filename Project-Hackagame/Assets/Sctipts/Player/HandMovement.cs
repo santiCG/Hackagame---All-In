@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class HandController : MonoBehaviour
+public class HandMovement : MonoBehaviour
 {
     [Header("Movimiento de la mano")]
     public float moveSpeed = 0.005f;
@@ -21,8 +21,18 @@ public class HandController : MonoBehaviour
     private Vector3 originalLocalPosition;
     private Vector3 targetLocalPosition;
     private Vector3 currentVelocity;
+    private RaycastHit lastHit;
 
     private GameObject interactableObj;
+    private PlayerMovement playerMovement;
+    private PlayerRotation playerRotation;
+    private Transform playerTransform;
+    public Transform positioningPoint;
+
+    private bool isPositioningPlayer = false;
+    private Vector3 targetPlayerPosition;
+    private Quaternion targetPlayerRotation;
+    private float positioningSpeed = 2f;
 
     private bool isControllingHand = false;
     private bool isInteracting = false;
@@ -33,6 +43,10 @@ public class HandController : MonoBehaviour
     {
         originalLocalPosition = transform.localPosition;
         targetLocalPosition = originalLocalPosition;
+
+        playerTransform = transform.root;
+        playerMovement = GetComponentInParent<PlayerMovement>();
+        playerRotation = playerTransform.GetComponentInParent<PlayerRotation>();
     }
 
     private void Update()
@@ -40,6 +54,23 @@ public class HandController : MonoBehaviour
         HandleRaycast();
         MoveHandWithMouse();
         SmoothFollow();
+
+        if (isPositioningPlayer)
+        {
+            float step = positioningSpeed * Time.deltaTime;
+
+            // Interpolación hacia la posición y rotación deseadas
+            playerTransform.position = Vector3.MoveTowards(playerTransform.position, targetPlayerPosition, step);
+            playerTransform.rotation = Quaternion.RotateTowards(playerTransform.rotation, targetPlayerRotation, step * 100f);
+
+            // Verifica si ya llegó
+            if (Vector3.Distance(playerTransform.position, targetPlayerPosition) < 0.01f &&
+                Quaternion.Angle(playerTransform.rotation, targetPlayerRotation) < 1f)
+            {
+                isPositioningPlayer = false; // Detiene la transición
+                playerMovement.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+            }
+        }
     }
 
     public void OnRightClick(InputAction.CallbackContext context)
@@ -51,9 +82,23 @@ public class HandController : MonoBehaviour
     {
         if (context.performed && isInteracting)
         {
+            if (positioningPoint != null)
+            {
+                // Bloquea movimiento y rotación antes de iniciar transición
+                playerMovement.SetMovementLock(true);
+                playerRotation.SetRotationLock(true);
+
+                // Configura destino
+                targetPlayerPosition = positioningPoint.position;
+                targetPlayerRotation = positioningPoint.rotation;
+
+                // Activa la transición
+                isPositioningPlayer = true;
+            }
+
             // "Pegar" la mano al objeto
             targetLocalPosition = interactableObj.transform.position;
-            
+            //playerMovement.MoveToInteractionPoint();
         }
         if(context.canceled)
         {
@@ -73,6 +118,10 @@ public class HandController : MonoBehaviour
                 crossImage.color = new Color(0f, 1f, 0f);
 
                 isInteracting = true;
+                lastHit = hit;
+                
+                // Busca el PositioningPoint dentro del objeto interactuable
+                //positioningPoint = lastHit.collider.gameObject.transform.Find("PositioningPoint");
 
                 interactableObj = hit.collider.gameObject;
                

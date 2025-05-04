@@ -4,10 +4,18 @@ using UnityEngine.InputSystem;
 public class PlayerRotation : MonoBehaviour
 {
     [Header("Rotation Settings")]
+    public bool lockRotation;
     public float rotationSpeed = 2f;
 
     private bool isRotating = false;
     private Vector2 lookInput;
+
+    public bool IsRotationLocked { get; private set; } = false;
+
+    public void SetRotationLock(bool locked)
+    {
+        IsRotationLocked = locked;
+    }
 
     public void OnRotate(InputAction.CallbackContext context)
     {
@@ -28,6 +36,8 @@ public class PlayerRotation : MonoBehaviour
 
     private void Update()
     {
+        if (IsRotationLocked) return;
+
         if (lookInput == Vector2.zero) return;
 
         float defaultRotation = lookInput.x * rotationSpeed * Time.deltaTime;  // Horizontal mouse → Yaw
