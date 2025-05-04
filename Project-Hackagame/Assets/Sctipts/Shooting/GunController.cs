@@ -18,7 +18,7 @@ public class GunController : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
-        playerRotation = FindObjectOfType<PlayerRotation>();
+        playerRotation = FindFirstObjectByType<PlayerRotation>();
     }
 
     void Update()

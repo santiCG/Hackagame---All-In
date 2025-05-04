@@ -15,6 +15,11 @@ public class windowCleaningScript : MonoBehaviour
     private Texture2D dirtMaskTexture;
     public Texture2D dirtMaskTextureBase;
 
+    public delegate void WindowCleaned();
+    public event WindowCleaned OnWindowCleaned;
+
+    private bool isCleaned = false;
+
     private void Start()
     {
         // Create a dynamic texture at runtime
@@ -35,15 +40,20 @@ public class windowCleaningScript : MonoBehaviour
             {
                 // Convert UV coordinates to pixel coordinates
                 Vector2 uv = hit.textureCoord;
-                Debug.Log($"UV: {uv}");
+                //Debug.Log($"UV: {uv}");
 
                 // Flip the Y-axis because UV coordinates are bottom-left origin, but textures are top-left origin
                 int pixelX = Mathf.FloorToInt(uv.x * dirtMaskTexture.width);
                 int pixelY = Mathf.FloorToInt(uv.y * dirtMaskTexture.height);
 
-                Debug.Log($"PixelX: {pixelX}, PixelY: {pixelY}");
+                //Debug.Log($"PixelX: {pixelX}, PixelY: {pixelY}");
 
                 PaintOnMask(pixelX, pixelY);
+
+                if (CheckIfCleaned())
+                {
+                    CompleteWindow();
+                }
             }
         }
     }
@@ -73,5 +83,37 @@ public class windowCleaningScript : MonoBehaviour
 
         // Apply the changes to the texture
         dirtMaskTexture.Apply();
+    }
+
+    private bool CheckIfCleaned()
+    {
+        float dirtAmountTotal = 0f;
+
+        // Loop through all pixels in the dirt mask texture
+        for (int x = 0; x < dirtMaskTexture.width; x++)
+        {
+            for (int y = 0; y < dirtMaskTexture.height; y++)
+            {
+                // Sum up the green channel of each pixel
+                dirtAmountTotal += dirtMaskTexture.GetPixel(x, y).g;
+            }
+        }
+
+        Debug.Log($"Dirt Amount Total: {dirtAmountTotal}");
+
+        bool isCleaned = dirtAmountTotal <= 150f;
+        Debug.Log($"Is Cleaned: {isCleaned}");
+
+        return isCleaned;
+    }
+
+    public void CompleteWindow()
+    {
+        if (!isCleaned)
+        {
+            isCleaned = true;
+            OnWindowCleaned?.Invoke(); // Notify the WindowManager
+            Debug.Log($"{gameObject.name} cleaned!");
+        }
     }
 }

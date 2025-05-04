@@ -11,6 +11,9 @@ public class SpaceBarnacle : MonoBehaviour
 
     private Rigidbody rb;
 
+    public delegate void BarnacleEliminated();
+    public event BarnacleEliminated OnBarnacleEliminated;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -30,12 +33,18 @@ public class SpaceBarnacle : MonoBehaviour
 
     void Die()
     {
-        //if (deathEffect)
-        //{
-        //    Instantiate(deathEffect, transform.position, transform.rotation);
-        //}
+        // Trigger the death effect
+        if (deathEffect)
+        {
+            Instantiate(deathEffect, transform.position, transform.rotation);
+        }
+
         rb.constraints = RigidbodyConstraints.None;
 
+        // Notify the AlienManager
+        OnBarnacleEliminated?.Invoke();
+
+        // Destroy the barnacle after a delay
         Destroy(gameObject, 3f);
     }
 }
