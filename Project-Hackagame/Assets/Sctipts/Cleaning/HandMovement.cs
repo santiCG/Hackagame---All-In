@@ -35,7 +35,7 @@ public class HandMovement : MonoBehaviour
     private Quaternion targetPlayerRotation;
     private float positioningSpeed = 2f;
 
-    private bool isControllingHand = false;
+    private bool IsControllingHand { get; set; } = false;
     private bool isInteracting = false;
 
     public bool PlayerInteracting => isInteracting;
@@ -81,7 +81,7 @@ public class HandMovement : MonoBehaviour
 
     public void OnRightClick(InputAction.CallbackContext context)
     {
-        isControllingHand = context.performed || context.started;
+        //isControllingHand = context.performed || context.started;
     }
 
     public void OnLeftClick(InputAction.CallbackContext context)
@@ -101,6 +101,7 @@ public class HandMovement : MonoBehaviour
                 // Activa la transición
                 isPositioningPlayer = true;
                 playerCanMove = false;
+                IsControllingHand = true;
             }
 
             // "Pegar" la mano al objeto
@@ -139,11 +140,12 @@ public class HandMovement : MonoBehaviour
 
         // Si no hay interacción
         crossImage.color = new Color(1f, 1f, 1f);
+        IsControllingHand = false;
     }
 
     private void MoveHandWithMouse()
     {
-        if (!isControllingHand) return;
+        if (!IsControllingHand) return;
 
         Vector2 mouseDelta = Mouse.current.delta.ReadValue();
 

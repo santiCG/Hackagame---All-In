@@ -6,6 +6,8 @@ public class SafeZoneButton : MonoBehaviour, Iinteractable
     [SerializeField] private Animator safeZoneAnim;
     public bool isSafeZoneActive = false;
 
+    public AudioSource sound;
+
     [HideInInspector] public Outline outline;
 
     private void Awake()
@@ -28,6 +30,7 @@ public class SafeZoneButton : MonoBehaviour, Iinteractable
             safeZoneAnim.SetTrigger("DeactivateSafeZone");
             isSafeZoneActive = false;
             safeZone.ToggleSafeZone();
+            sound.Play();
         }
     }
 }

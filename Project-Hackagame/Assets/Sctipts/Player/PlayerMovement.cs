@@ -16,10 +16,9 @@ public class PlayerMovement : MonoBehaviour
     public bool isWalking;
     public bool lockMovement;
     public float stopMagnitude = 0.1f;
-    public GameObject posPoint;
 
     [Header("Sound")]
-    public AudioSource audio;
+    public AudioSource JetpackAudio;
 
     private float currentGas;
     private float lastInputTime;
@@ -81,9 +80,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (isUsingJetpack && currentGas > 0f)
         {
-            if(!audio.isPlaying)
+            if(!JetpackAudio.isPlaying)
             {
-                audio.Play();
+                JetpackAudio.Play();
             }
             Vector3 moveDir = new Vector3(planarInput.x, verticalInput, planarInput.y);
             rb.AddRelativeForce(moveDir * thrustForce, ForceMode.Acceleration);
@@ -105,14 +104,5 @@ public class PlayerMovement : MonoBehaviour
     public float GetCurrentGasPercentage()
     {
         return currentGas / maxGas;
-    }
-
-    public void MoveToInteractionPoint()
-    {
-        Vector3.MoveTowards(transform.position, posPoint.transform.position, 0.1f);
-        if(Vector3.Distance(transform.position, posPoint.transform.position) < 0.02f)
-        {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-        }
     }
 }

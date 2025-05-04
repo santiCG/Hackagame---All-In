@@ -21,12 +21,12 @@ public class LaserProjectile : MonoBehaviour
             if (barnacle != null)
             {
                 barnacle.TakeDamage(damage);
-                Destroy(gameObject);
+                Destroy(gameObject, 0.2f);
             }
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 0.2f);
         }
 
     }

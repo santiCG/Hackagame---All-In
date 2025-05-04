@@ -43,7 +43,7 @@ public class GunController : MonoBehaviour
 
     void HandleShooting()
     {
-        if (isAiming && Input.GetMouseButtonDown(0)) // click izquierdo mientras apunta
+        if (Input.GetMouseButtonDown(0)) // click izquierdo mientras apunta
         {
             audio.Play();
             Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f)); // centro de la pantalla
