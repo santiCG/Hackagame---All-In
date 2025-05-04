@@ -4,6 +4,7 @@ using UnityEngine;
 public class LaserProjectile : MonoBehaviour
 {
     public float lifeTime = 5f;
+    public float damage = 1f;
 
     void Start()
     {
@@ -15,9 +16,14 @@ public class LaserProjectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("¡Impacto en enemigo!");
-            // Aquí puedes añadir efectos, daño, etc.
+
+            SpaceBarnacle barnacle = collision.gameObject.GetComponent<SpaceBarnacle>();
+            if (barnacle != null)
+            {
+                barnacle.TakeDamage(damage);
+            }
         }
 
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
