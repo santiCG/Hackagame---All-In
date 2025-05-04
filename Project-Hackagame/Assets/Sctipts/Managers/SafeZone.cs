@@ -41,7 +41,7 @@ public class SafeZone : MonoBehaviour
         {
             ActivateSafeZone();
         }
-        else
+        else if (safeZoneButton.isSafeZoneActive == false)
         {
             DeactivateSafeZone();
         }
@@ -67,6 +67,7 @@ public class SafeZone : MonoBehaviour
         if (playerRigidbody != null)
         {
             playerRigidbody.useGravity = true; // Using Gravity
+            playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         }
     }
 
@@ -76,6 +77,9 @@ public class SafeZone : MonoBehaviour
         if (playerRigidbody != null)
         {
             playerRigidbody.useGravity = false; // NOT using gravity
+            playerRigidbody.constraints = RigidbodyConstraints.None; // Unfreeze all rotations and position
+            playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationZ;
+
         }
     }
 }
