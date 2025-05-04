@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(-1)]
 public class OutlineInteractuables : MonoBehaviour
 {
     [SerializeField] private Color outlineColor = Color.yellow;

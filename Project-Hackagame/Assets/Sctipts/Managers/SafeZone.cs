@@ -3,6 +3,9 @@ using UnityEngine;
 public class SafeZone : MonoBehaviour
 {
     [SerializeField] private SafeZoneButton safeZoneButton;
+    [SerializeField] private OxygenSystem oxygenSystem;
+    [SerializeField] private Collider safeZoneCollider;
+    [SerializeField] private GameObject player;
 
     private void Awake()
     {
@@ -10,52 +13,69 @@ public class SafeZone : MonoBehaviour
         {
             safeZoneButton = FindFirstObjectByType<SafeZoneButton>();
         }
+
+        if (oxygenSystem == null)
+        {
+            oxygenSystem = FindFirstObjectByType<OxygenSystem>();
+        }
+
+        safeZoneCollider = GetComponent<Collider>();
     }
 
     private void Start()
     {
-        OverLapBox();
-    }
-
-    private void OverLapBox()
-    {
-        Collider[] colliders = Physics.OverlapBox(transform.position, transform.localScale / 2, transform.rotation);
-        foreach (Collider collider in colliders)
+        // Initialize the safe zone state at the start
+        if (safeZoneButton.isSafeZoneActive)
         {
-            OxygenSystem oxygenSystem = collider.GetComponent<OxygenSystem>();
-            if (oxygenSystem != null)
-            {
-                if(safeZoneButton.isSafeZoneActive)
-                {
-                    oxygenSystem.EnterSafeZone();
-                }
-                else
-                {
-                    oxygenSystem.ExitSafeZone();
-                }
-            }
+            ActivateSafeZone();
+        }
+        else
+        {
+            DeactivateSafeZone();
         }
     }
 
-    /*
-    private void OnTriggerEnter(Collider other)
+    public void ToggleSafeZone()
     {
-        // Check if the player has an OxygenSystem component
-        OxygenSystem oxygenSystem = other.GetComponent<OxygenSystem>();
-        if (oxygenSystem != null)
+        if (safeZoneButton.isSafeZoneActive)
         {
-            oxygenSystem.EnterSafeZone();
+            ActivateSafeZone();
+        }
+        else
+        {
+            DeactivateSafeZone();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void ActivateSafeZone()
     {
-        // Check if the player has an OxygenSystem component
-        OxygenSystem oxygenSystem = other.GetComponent<OxygenSystem>();
-        if (oxygenSystem != null)
+        oxygenSystem.EnterSafeZone();
+        DisablePlayerGravity();
+        Debug.Log("Safe zone activated. Gravity disabled.");
+    }
+
+    private void DeactivateSafeZone()
+    {
+        oxygenSystem.ExitSafeZone();
+        EnablePlayerGravity();
+        Debug.Log("Safe zone deactivated. Gravity enabled.");
+    }
+
+    private void DisablePlayerGravity()
+    {
+        Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
+        if (playerRigidbody != null)
         {
-            oxygenSystem.ExitSafeZone();
+            playerRigidbody.useGravity = true; // Using Gravity
         }
     }
-    */
+
+    private void EnablePlayerGravity()
+    {
+        Rigidbody playerRigidbody = player.GetComponent<Rigidbody>();
+        if (playerRigidbody != null)
+        {
+            playerRigidbody.useGravity = false; // NOT using gravity
+        }
+    }
 }

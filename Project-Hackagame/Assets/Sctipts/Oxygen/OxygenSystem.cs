@@ -8,7 +8,7 @@ public class OxygenSystem : MonoBehaviour
     [SerializeField] private Image oxygenFillImage;
 
     private float currentOxygen;
-    private bool isInSafeZone = false;
+    private bool isInSafeZone = true;
 
     public delegate void OxygenDepleted();
     public event OxygenDepleted OnOxygenDepleted;
@@ -20,10 +20,11 @@ public class OxygenSystem : MonoBehaviour
 
     private void Update()
     {
-        // Deplete oxygen over time
-        currentOxygen -= oxygenDepletionRate * Time.deltaTime;
+        if(!isInSafeZone){
+            currentOxygen -= oxygenDepletionRate * Time.deltaTime;
 
-        currentOxygen = Mathf.Clamp(currentOxygen, 0, maxOxygen);
+            currentOxygen = Mathf.Clamp(currentOxygen, 0, maxOxygen);
+        }
 
         UpdateOxygenUI();
 

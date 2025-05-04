@@ -7,6 +7,8 @@ public class OxygenTank : MonoBehaviour, Iinteractable
     private int currentUses;
 
     [SerializeField] private OxygenSystem oxygenSystem;
+
+    public Outline outline;
     
     private void Awake()
     {
@@ -14,6 +16,9 @@ public class OxygenTank : MonoBehaviour, Iinteractable
         {
             oxygenSystem = FindFirstObjectByType<OxygenSystem>();
         }
+
+        outline = GetComponent<Outline>();
+        outline.enabled = false;
     }
     
     private void Start()
