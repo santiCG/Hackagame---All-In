@@ -588,6 +588,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &955100629 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7558282531551608534, guid: 00509323c5b7d9a42851c554b5c9aab7, type: 3}
+  m_PrefabInstance: {fileID: 2619374531834246602}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &985343936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,34 +1030,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 239791909541063514, guid: 00509323c5b7d9a42851c554b5c9aab7, type: 3}
-      propertyPath: windowRenderer
-      value: 
-      objectReference: {fileID: 1818676184}
     - target: {fileID: 1851067939385736549, guid: 00509323c5b7d9a42851c554b5c9aab7, type: 3}
       propertyPath: crossImage
       value: 
       objectReference: {fileID: 985343938}
-    - target: {fileID: 4255552377456159226, guid: 00509323c5b7d9a42851c554b5c9aab7, type: 3}
-      propertyPath: audio
-      value: 
-      objectReference: {fileID: 2619374531834246603}
-    - target: {fileID: 4255552377456159226, guid: 00509323c5b7d9a42851c554b5c9aab7, type: 3}
-      propertyPath: posPoint
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4968418082211114614, guid: 00509323c5b7d9a42851c554b5c9aab7, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 985343937}
-    - target: {fileID: 5563073826622344519, guid: 00509323c5b7d9a42851c554b5c9aab7, type: 3}
-      propertyPath: m_Resource
+    - target: {fileID: 5388521213842549684, guid: 00509323c5b7d9a42851c554b5c9aab7, type: 3}
+      propertyPath: audio
       value: 
-      objectReference: {fileID: 8300000, guid: e8be11b1866750944a8b037f72714a18, type: 3}
-    - target: {fileID: 5563073826622344519, guid: 00509323c5b7d9a42851c554b5c9aab7, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: e8be11b1866750944a8b037f72714a18, type: 3}
+      objectReference: {fileID: 955100629}
     - target: {fileID: 6016959883969935293, guid: 00509323c5b7d9a42851c554b5c9aab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.33
@@ -1098,11 +1087,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00509323c5b7d9a42851c554b5c9aab7, type: 3}
---- !u!82 &2619374531834246603 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 5563073826622344519, guid: 00509323c5b7d9a42851c554b5c9aab7, type: 3}
-  m_PrefabInstance: {fileID: 2619374531834246602}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9106610295397329182
 PrefabInstance:
   m_ObjectHideFlags: 0

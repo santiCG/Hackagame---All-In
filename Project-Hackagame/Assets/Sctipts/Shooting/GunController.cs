@@ -13,6 +13,8 @@ public class GunController : MonoBehaviour
     private Camera mainCamera;
     private PlayerRotation playerRotation;
 
+    public AudioSource audio;
+
     void Start()
     {
         mainCamera = Camera.main;
@@ -43,6 +45,7 @@ public class GunController : MonoBehaviour
     {
         if (isAiming && Input.GetMouseButtonDown(0)) // click izquierdo mientras apunta
         {
+            audio.Play();
             Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f)); // centro de la pantalla
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
