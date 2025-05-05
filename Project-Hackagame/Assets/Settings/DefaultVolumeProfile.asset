@@ -100,10 +100,10 @@ MonoBehaviour:
     m_Value: 0
   quality:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.133
+    m_Value: 0.103
   clamp:
     m_OverrideState: 1
     m_Value: 0.05
@@ -295,7 +295,7 @@ MonoBehaviour:
   active: 1
   distance:
     m_OverrideState: 1
-    m_Value: 0.206
+    m_Value: 0.303
   cropToFit:
     m_OverrideState: 1
     m_Value: 1
@@ -531,7 +531,7 @@ MonoBehaviour:
     m_Value: 4
   chromaticAbberationIntensity:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.297
 --- !u!114 &1052315754049611418
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -832,7 +832,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.379
 --- !u!114 &4692707386359143217
 MonoBehaviour:
   m_ObjectHideFlags: 3
