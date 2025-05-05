@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Astroemvarias
+  m_text: Percebes y Ventanas
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ebb1c44b9453eb9439f3a893f9c48414, type: 2}
   m_sharedMaterial: {fileID: -8269180618297478497, guid: ebb1c44b9453eb9439f3a893f9c48414, type: 2}

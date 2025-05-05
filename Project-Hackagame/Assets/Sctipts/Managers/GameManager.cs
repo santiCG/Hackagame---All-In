@@ -1,16 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Dialogue dialogueScript;
     [SerializeField] private int totalObjectives = 3;
+    [SerializeField] private OxygenSystem oxygenSystem; // Reference to the OxygenSystem script
+    [SerializeField] private ScenesManager scenesManager; // Reference to the ScenesManager script
     private int completedObjectives = 0;
 
     [Header("Death UI")]
     [SerializeField] private DamageUI_VFX damageUIVFX; // Reference to the DamageUI_VFX script
     [SerializeField] private GameObject deathPanel; // Reference to the death panel
+    [SerializeField] private GameObject finalTrigger;
 
     void Awake()
     {
@@ -45,6 +49,18 @@ public class GameManager : MonoBehaviour
     private void WinGame()
     {
         Debug.Log("All objectives completed! You win!");
+
+        // Slow down the oxygen depletion rate
+        if (oxygenSystem != null)
+        {
+            oxygenSystem.SetDepletionRate(0.1f); // Set a very slow depletion rate
+        }
+
+        // Activate the final trigger
+        if (finalTrigger != null)
+        {
+            finalTrigger.SetActive(true);
+        }  
     }
 
     public void HandlePlayerDeath()

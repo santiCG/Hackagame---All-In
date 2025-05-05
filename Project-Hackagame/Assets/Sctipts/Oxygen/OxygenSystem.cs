@@ -77,6 +77,11 @@ public class OxygenSystem : MonoBehaviour
         UpdateOxygenUI();
     }
 
+    public void SetDepletionRate(float newRate)
+    {
+        oxygenDepletionRate = newRate;
+    }
+
     public float GetCurrentOxygen()
     {
         return currentOxygen;

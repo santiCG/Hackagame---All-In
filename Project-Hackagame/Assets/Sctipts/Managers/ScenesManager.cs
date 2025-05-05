@@ -47,6 +47,23 @@ public class ScenesManager : MonoBehaviour
         }
     }
 
+    public void FadeToMainMenu(float fadeDuration)
+    {
+        if (fadeImage != null)
+        {
+            fadeImage.gameObject.SetActive(true);
+            LeanTween.alpha(fadeImage.rectTransform, 1f, fadeDuration).setOnComplete(() =>
+            {
+                SceneManager.LoadScene(sceneToLoad);
+            });
+        }
+        else
+        {
+            Debug.LogWarning("Fade image is not assigned!");
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+
     public void RestartScene()
     {
         if (fadeImage != null)
