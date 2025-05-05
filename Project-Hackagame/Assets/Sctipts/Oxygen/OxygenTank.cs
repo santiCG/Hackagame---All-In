@@ -7,6 +7,8 @@ public class OxygenTank : MonoBehaviour, Iinteractable
     [SerializeField] private int maxUses = 3; // Maximum number of uses
     private int currentUses;
 
+    public AudioSource sound;
+
     [SerializeField] private OxygenSystem oxygenSystem;
 
     [Header("Meshes to Disable")]
@@ -40,7 +42,7 @@ public class OxygenTank : MonoBehaviour, Iinteractable
     {
         if (currentUses > 0)
         {
-
+            if (oxygenSystem.currentOxygen > 90) return;
             if(currentUses == 1){
                 dialogueScript.TriggerDialogue(5);
             }
@@ -48,6 +50,7 @@ public class OxygenTank : MonoBehaviour, Iinteractable
             if (oxygenSystem != null)
             {
                 oxygenSystem.RefillOxygen(refillAmount);
+                sound.Play();
                 currentUses--;
 
                 Debug.Log($"Oxygen refilled. Remaining uses: {currentUses}");

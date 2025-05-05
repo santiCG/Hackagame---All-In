@@ -7,7 +7,7 @@ public class OxygenSystem : MonoBehaviour
     [SerializeField] private float oxygenDepletionRate = 1f;
     [SerializeField] private Image oxygenFillImage;
 
-    private float currentOxygen;
+    public float currentOxygen;
     private bool isInSafeZone = true;
 
     public delegate void OxygenDepleted();

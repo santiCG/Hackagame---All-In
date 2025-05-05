@@ -103,7 +103,7 @@ public class ScenesManager : MonoBehaviour
     // Method to show the panel
     public void ShowPanel(bool pauseGame)
     {
-        if (panel != null)
+        if (panel != null && panel.activeSelf == false)
         {
             panel.SetActive(true);
 
@@ -116,7 +116,9 @@ public class ScenesManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Panel is null!");
+            HidePanel(); // Hide the panel if it's already active
+            Cursor.lockState = CursorLockMode.Locked; // Lock the cursor
+            Cursor.visible = false; // Hide the cursor
         }
     }
 
