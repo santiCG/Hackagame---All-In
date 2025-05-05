@@ -36,7 +36,7 @@ public class windowCleaningScript : MonoBehaviour
 
         Debug.DrawLine(cleaningTool.position, cleaningTool.forward, Color.red, 3f);
 
-        if (Physics.Raycast(new Ray(cleaningTool.position, cleaningTool.forward), out RaycastHit hit, rayDistance))
+        if (Physics.Raycast(new Ray(cleaningTool.position, cleaningTool.up), out RaycastHit hit, rayDistance))
         {
             if (hit.collider.gameObject == windowRenderer.gameObject)
             {
