@@ -301,32 +301,36 @@ MonoBehaviour:
   textComp: {fileID: 0}
   textSpeed: 0.05
   dialogueGroups:
-  - index: 0
+  - sound: {fileID: 0}
+    index: 0
     lines:
     - "Oh, mira qui\xE9n decidi\xF3 reincorporarse a su existencia biol\xF3gica."
     - Bienvenida, Josefina.
     - 'Tu gloriosa tarea de hoy: raspar ventanas y asesinar percebes.'
     - "Qu\xE9 emocionante."
     delays:
-    - 1
-    - 1
-    - 1
-    - 1
-  - index: 1
+    - 4.4
+    - 2
+    - 4.2
+    - 1.7
+  - sound: {fileID: 0}
+    index: 1
     lines:
     - "Una ventana menos entre nosotros y el vasto vac\xEDo de la muerte."
     - "Qu\xE9 logro tan\u2026 transparente."
     delays:
-    - 1
-    - 1
-  - index: 2
+    - 3.5
+    - 2.5
+  - sound: {fileID: 0}
+    index: 2
     lines:
     - Felicitaciones.
     - "Acabas de eliminar una forma de vida con m\xE1s prop\xF3sito que t\xFA."
     delays:
     - 1
     - 1
-  - index: 3
+  - sound: {fileID: 0}
+    index: 3
     lines:
     - Siguiente.
     - Ventanas limpias.
@@ -335,7 +339,8 @@ MonoBehaviour:
     - 1
     - 1
     - 1
-  - index: 4
+  - sound: {fileID: 0}
+    index: 4
     lines:
     - Los percebes han sido erradicados.
     - "Qu\xE9 alivio para la nave\u2026"
@@ -344,7 +349,8 @@ MonoBehaviour:
     - 1
     - 1
     - 1
-  - index: 5
+  - sound: {fileID: 0}
+    index: 5
     lines:
     - "Ox\xEDgeno."
     - "Ese peque\xF1o capricho tuyo de seguir respirando."
@@ -353,14 +359,16 @@ MonoBehaviour:
     - 1
     - 1
     - 1
-  - index: 6
+  - sound: {fileID: 0}
+    index: 6
     lines:
     - "Aviso: niveles de ox\xEDgeno bajos."
     - "\xBFEst\xE1s hiperventilando o es solo tu cuerpo rogando por relevancia?"
     delays:
     - 1
     - 1
-  - index: 7
+  - sound: {fileID: 0}
+    index: 7
     lines:
     - Fin de la unidad Josefina.
     - "Tiempo de funcionamiento: pat\xE9ticamente breve."
@@ -369,14 +377,16 @@ MonoBehaviour:
     - 1
     - 1
     - 1
-  - index: 8
+  - sound: {fileID: 0}
+    index: 8
     lines:
     - 'Advertencia: acceso denegado.'
     - Esta nave no admite carga emocional ni humana innecesaria.
     delays:
     - 1
     - 1
-  - index: 9
+  - sound: {fileID: 0}
+    index: 9
     lines:
     - Abre esa exclusa y sal de aqui.
     - Te quiero chambiando cuanto antes.

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class DialogueGroup
 {
+    public AudioSource sound;
     public int index; // Unique identifier for the group
     public string[] lines; // Lines of dialogue in this group
     public float[] delays; // Delays for each line
@@ -24,6 +25,7 @@ public class Dialogue : MonoBehaviour
     private void Start()
     {
         //textComp.text = string.Empty;
+        TriggerDialogue(0);
     }
 
     public void TriggerDialogue(int groupIndex)
@@ -74,10 +76,11 @@ public class Dialogue : MonoBehaviour
 
 IEnumerator DialogDuration(DialogueGroup group)
 {
+    group.sound.Play();
     yield return StartCoroutine(TypeLine(group.lines[lineIndex]));
 
     yield return new WaitForSeconds(group.delays[lineIndex]);
-
+    
     NextLine(group);
 }
 
