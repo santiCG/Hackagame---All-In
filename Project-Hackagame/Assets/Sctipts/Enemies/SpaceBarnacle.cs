@@ -7,8 +7,8 @@ public class SpaceBarnacle : MonoBehaviour
     private float currentHealth;
     public BoxCollider box;
 
-    [Header("Effects")]
-    public GameObject deathEffect;
+    [Header("Sound")]
+    public AudioSource sound;
 
     private Rigidbody rb;
 
@@ -35,18 +35,13 @@ public class SpaceBarnacle : MonoBehaviour
     void Die()
     {
         box.enabled = false;
-        // Trigger the death effect
-        if (deathEffect)
-        {
-            Instantiate(deathEffect, transform.position, transform.rotation);
-        }
-
+        sound.Play();
         rb.constraints = RigidbodyConstraints.None;
         
         // Notify the AlienManager
         OnBarnacleEliminated?.Invoke();
 
         // Destroy the barnacle after a delay
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 1f);
     }
 }

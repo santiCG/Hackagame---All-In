@@ -24,8 +24,7 @@ public class Dialogue : MonoBehaviour
 
     private void Start()
     {
-        //textComp.text = string.Empty;
-        TriggerDialogue(0);
+
     }
 
     public void TriggerDialogue(int groupIndex)
