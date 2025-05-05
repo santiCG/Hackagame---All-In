@@ -109,6 +109,8 @@ public class ScenesManager : MonoBehaviour
 
             if (pauseGame)
             {
+                Cursor.lockState = CursorLockMode.None; // Unlock the cursor
+                Cursor.visible = true; // Show the cursor
                 Time.timeScale = 0f; // Pause the game
             }
         }
@@ -131,5 +133,13 @@ public class ScenesManager : MonoBehaviour
         {
             Debug.LogWarning("Panel is null!");
         }
+    }
+
+    public void HidePanelAndResumeGame()
+    {
+        if(!panel.activeSelf)  return;
+        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor
+        Cursor.visible = false; // Hide the cursor
+        HidePanel();
     }
 }

@@ -1395,7 +1395,7 @@ Transform:
   m_GameObject: {fileID: 2664712765260210028}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7112377, y: 0.00016974653, z: 0.0016521361, w: 0.70294964}
-  m_LocalPosition: {x: -0.008, y: 0.01, z: 0.395}
+  m_LocalPosition: {x: -0.008000164, y: 0.010000056, z: 0.39500022}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3841,7 +3841,31 @@ MonoBehaviour:
     m_ActionId: def490e5-4c7f-4632-a2c0-5bba3d30650b
     m_ActionName: 'Player/ChangeToGun[/Keyboard/2]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ScenesManager, Assembly-CSharp
+        m_MethodName: ShowPanel
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ScenesManager, Assembly-CSharp
+        m_MethodName: HidePanelAndResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_ActionId: 0c8d4a12-5a32-476a-848d-c054e80e7439
     m_ActionName: 'Player/Back[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 1
@@ -4309,7 +4333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4643378922774893820, guid: 983e93bedd9e8ff41b18b9c18c134ac8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5629969482355435396, guid: 983e93bedd9e8ff41b18b9c18c134ac8, type: 3}
       propertyPath: m_LocalScale.x
@@ -4337,19 +4361,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5629969482355435396, guid: 983e93bedd9e8ff41b18b9c18c134ac8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.39024952
+      value: -0.4259851
       objectReference: {fileID: 0}
     - target: {fileID: 5629969482355435396, guid: 983e93bedd9e8ff41b18b9c18c134ac8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.4708334
+      value: 0.47992966
       objectReference: {fileID: 0}
     - target: {fileID: 5629969482355435396, guid: 983e93bedd9e8ff41b18b9c18c134ac8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.20342092
+      value: 0.18091917
       objectReference: {fileID: 0}
     - target: {fileID: 5629969482355435396, guid: 983e93bedd9e8ff41b18b9c18c134ac8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7646182
+      value: 0.7453003
       objectReference: {fileID: 0}
     - target: {fileID: 5629969482355435396, guid: 983e93bedd9e8ff41b18b9c18c134ac8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4361,7 +4385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5629969482355435396, guid: 983e93bedd9e8ff41b18b9c18c134ac8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 213.482
+      value: 218.905
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
