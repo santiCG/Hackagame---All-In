@@ -2,15 +2,24 @@ using UnityEngine;
 
 public class TriggerBoxSound : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public AudioSource sound;
+    public bool OneShotSound;
 
-    // Update is called once per frame
-    void Update()
+    private bool played;
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.CompareTag("Player"))
+        {
+            if(OneShotSound && !played)
+            {
+                sound.Play();
+                played = true;
+            }
+            else if(!OneShotSound && !sound.isPlaying)
+            {
+                sound.Play();
+            }
+        }
     }
 }
