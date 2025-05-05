@@ -3,12 +3,13 @@ using UnityEngine;
 public class windowCleaningScript : MonoBehaviour
 {
     [Header("References")]
-    public Camera playerCamera;
+    public Transform cleaningTool;
     public Renderer windowRenderer;
 
     [Header("Cleaning Texture")]
     public float brushSize = 10f;
     public Color cleanColor = Color.black; // Black reveals the clean window
+    public float rayDistance = 2.0f;
 
     public Material material;
     public Texture2D dirtBrush;
@@ -33,8 +34,9 @@ public class windowCleaningScript : MonoBehaviour
     {
         if (!Input.GetMouseButton(0)) return;
 
-        Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        Debug.DrawLine(cleaningTool.position, cleaningTool.forward, Color.red, 3f);
+
+        if (Physics.Raycast(new Ray(cleaningTool.position, cleaningTool.forward), out RaycastHit hit, rayDistance))
         {
             if (hit.collider.gameObject == windowRenderer.gameObject)
             {

@@ -81,7 +81,7 @@ public class HandMovement : MonoBehaviour
 
     public void OnRightClick(InputAction.CallbackContext context)
     {
-        //isControllingHand = context.performed || context.started;
+        IsControllingHand = context.performed || context.started;
     }
 
     public void OnLeftClick(InputAction.CallbackContext context)
@@ -101,7 +101,7 @@ public class HandMovement : MonoBehaviour
                 // Activa la transición
                 isPositioningPlayer = true;
                 playerCanMove = false;
-                IsControllingHand = true;
+                //IsControllingHand = true;
             }
 
             // "Pegar" la mano al objeto
@@ -140,7 +140,7 @@ public class HandMovement : MonoBehaviour
 
         // Si no hay interacción
         crossImage.color = new Color(1f, 1f, 1f);
-        IsControllingHand = false;
+        //IsControllingHand = false;
     }
 
     private void MoveHandWithMouse()
