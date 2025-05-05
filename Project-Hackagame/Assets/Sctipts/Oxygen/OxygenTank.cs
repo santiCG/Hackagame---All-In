@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class OxygenTank : MonoBehaviour, Iinteractable
 {
@@ -7,6 +8,9 @@ public class OxygenTank : MonoBehaviour, Iinteractable
     private int currentUses;
 
     [SerializeField] private OxygenSystem oxygenSystem;
+
+    [Header("Meshes to Disable")]
+    [SerializeField] private List<GameObject> meshesToDisable;
 
     public Outline outline;
     private Dialogue dialogueScript;
@@ -47,11 +51,35 @@ public class OxygenTank : MonoBehaviour, Iinteractable
                 currentUses--;
 
                 Debug.Log($"Oxygen refilled. Remaining uses: {currentUses}");
+
+                DisableNextMesh();
             }
         }
         else
         {
+            GetComponent<MeshCollider>().enabled = false;
             Debug.Log("Oxygen tank is empty!");
+        }
+    }
+
+    private void DisableNextMesh()
+    {
+        if (meshesToDisable.Count > 0)
+        {
+            // Disable the first mesh in the list
+            GameObject meshToDisable = meshesToDisable[0];
+            if (meshToDisable != null)
+            {
+                meshToDisable.SetActive(false);
+                Debug.Log($"Disabled mesh: {meshToDisable.name}");
+            }
+
+            // Remove the mesh from the list
+            meshesToDisable.RemoveAt(0);
+        }
+        else
+        {
+            Debug.Log("No more meshes to disable!");
         }
     }
 }
