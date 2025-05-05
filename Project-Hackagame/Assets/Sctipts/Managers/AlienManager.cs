@@ -16,6 +16,8 @@ public class AlienManager : MonoBehaviour
     [SerializeField] private List<SpaceBarnacle> barnaclesToEliminate; // List of barnacles to eliminate
     private int totalBarnacles;
     private int eliminatedBarnacles;
+    public AudioSource primerPercebe;
+    public AudioSource todosPercebes;
 
     private Dialogue dialogueScript;
 
@@ -52,6 +54,7 @@ public class AlienManager : MonoBehaviour
 
         if(eliminatedBarnacles == 1){
             dialogueScript.TriggerDialogue(2);
+            primerPercebe.Play();
         }
 
         UpdateObjectiveUI();
@@ -60,7 +63,7 @@ public class AlienManager : MonoBehaviour
         if (eliminatedBarnacles >= totalBarnacles)
         {
             dialogueScript.TriggerDialogue(4);
-
+            todosPercebes.Play();
             CompleteAllObjectives();
         }
     }

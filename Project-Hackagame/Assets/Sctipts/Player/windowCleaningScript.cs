@@ -5,6 +5,7 @@ public class windowCleaningScript : MonoBehaviour
     [Header("References")]
     public Transform cleaningTool;
     public Renderer windowRenderer;
+    public HandMovement hand;
 
     [Header("Cleaning Texture")]
     public float brushSize = 10f;
@@ -36,7 +37,7 @@ public class windowCleaningScript : MonoBehaviour
 
         Debug.DrawLine(cleaningTool.position, cleaningTool.forward, Color.red, 3f);
 
-        if (Physics.Raycast(new Ray(cleaningTool.position, cleaningTool.up), out RaycastHit hit, rayDistance))
+        if (Physics.Raycast(new Ray(cleaningTool.position, cleaningTool.forward), out RaycastHit hit, rayDistance))
         {
             if (hit.collider.gameObject == windowRenderer.gameObject)
             {
@@ -103,7 +104,7 @@ public class windowCleaningScript : MonoBehaviour
 
         Debug.Log($"Dirt Amount Total: {dirtAmountTotal}");
 
-        bool isCleaned = dirtAmountTotal <= 150f;
+        bool isCleaned = dirtAmountTotal <= 3000f;
         Debug.Log($"Is Cleaned: {isCleaned}");
 
         return isCleaned;
@@ -118,4 +119,9 @@ public class windowCleaningScript : MonoBehaviour
             Debug.Log($"{gameObject.name} cleaned!");
         }
     }
+
+    //public void Interact()
+    //{
+    //    hand.isPositioningPlayer = true;
+    //}
 }

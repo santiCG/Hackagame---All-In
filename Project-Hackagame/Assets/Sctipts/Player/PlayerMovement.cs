@@ -31,11 +31,23 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerRotation playerRotation;
 
+    public float baseMoveSpeed = 5f;
+    public float rotationSlowFactor = 0.4f; // Cuánto se reduce al rotar
+    public float smoothTime = 0.3f; // Suavidad del cambio de velocidad
+
+    private float currentMoveSpeed;
+    private float speedVelocity = 0f; // Ref. para SmoothDamp
+
+    // Esto será actualizado desde el PlayerLook
+    [HideInInspector]
+    public float currentRotationInput = 0f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         playerRotation = GetComponentInParent<PlayerRotation>();
         currentGas = maxGas;
+        currentMoveSpeed = baseMoveSpeed;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -101,6 +113,22 @@ public class PlayerMovement : MonoBehaviour
         if (rb.linearVelocity.magnitude < stopMagnitude && rb.linearVelocity != Vector3.zero)
         { 
             rb.linearVelocity = Vector3.zero;
+        }
+
+        if(playerRotation.isRotating)
+        {
+            // Determinar la velocidad objetivo
+            float targetSpeed = baseMoveSpeed * (Mathf.Abs(currentRotationInput) > 0.05f ? rotationSlowFactor : 1f);
+
+            // Suavizar transición con SmoothDamp
+            currentMoveSpeed = Mathf.SmoothDamp(currentMoveSpeed, targetSpeed, ref speedVelocity, smoothTime);
+
+            // Calcular dirección de movimiento
+            Vector3 moveDirection = transform.right * planarInput.x + transform.forward * planarInput.y + transform.up * verticalInput;
+            moveDirection.Normalize();
+
+            // Aplicar movimiento
+            rb.linearVelocity = moveDirection * currentMoveSpeed + new Vector3(0, rb.linearVelocity.y, 0); // mantener eje Y si usas gravedad
         }
     }
 

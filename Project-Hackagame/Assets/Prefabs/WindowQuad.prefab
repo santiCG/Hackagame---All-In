@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2966141729741435664}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000005960464}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.063}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 2985642533652036387}
   m_Layer: 0
   m_Name: WindowQuad
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,10 +154,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b0861d1f142574dbb20c3a86decc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
+  cleaningTool: {fileID: 0}
   windowRenderer: {fileID: 5961671398417100400}
+  hand: {fileID: 0}
   brushSize: 100
   cleanColor: {r: 0, g: 0, b: 0, a: 1}
+  rayDistance: 2
   material: {fileID: 2100000, guid: a52d52598fbd1054281ab1063c328b10, type: 2}
   dirtBrush: {fileID: 2800000, guid: f22ae4e7a75dbe048a46df39553e31db, type: 3}
   dirtMaskTextureBase: {fileID: 2800000, guid: 1e335b77ddb5cc245b0481f2e64431a2, type: 3}

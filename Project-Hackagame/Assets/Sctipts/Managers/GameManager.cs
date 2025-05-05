@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player has died!");
 
         dialogueScript.TriggerDialogue(7);
+        ///////
 
         if (damageUIVFX != null)
         {

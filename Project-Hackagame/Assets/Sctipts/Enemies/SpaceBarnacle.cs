@@ -5,6 +5,7 @@ public class SpaceBarnacle : MonoBehaviour
     [Header("Health Settings")]
     public float maxHealth = 100f;
     private float currentHealth;
+    public BoxCollider box;
 
     [Header("Effects")]
     public GameObject deathEffect;
@@ -33,6 +34,7 @@ public class SpaceBarnacle : MonoBehaviour
 
     void Die()
     {
+        box.enabled = false;
         // Trigger the death effect
         if (deathEffect)
         {
@@ -40,7 +42,7 @@ public class SpaceBarnacle : MonoBehaviour
         }
 
         rb.constraints = RigidbodyConstraints.None;
-
+        
         // Notify the AlienManager
         OnBarnacleEliminated?.Invoke();
 

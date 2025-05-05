@@ -36,6 +36,7 @@ public class Dialogue : MonoBehaviour
         {
             currentGroupIndex = groupIndex;
             lineIndex = 0;
+            group.sound.Play();
             finishDialogue = false;
             StartCoroutine(DialogDuration(group));
         }
@@ -76,7 +77,6 @@ public class Dialogue : MonoBehaviour
 
 IEnumerator DialogDuration(DialogueGroup group)
 {
-    group.sound.Play();
     yield return StartCoroutine(TypeLine(group.lines[lineIndex]));
 
     yield return new WaitForSeconds(group.delays[lineIndex]);

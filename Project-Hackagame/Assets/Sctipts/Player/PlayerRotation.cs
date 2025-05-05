@@ -8,7 +8,7 @@ public class PlayerRotation : MonoBehaviour
     public float rotationSpeed = 2f;
 
     public bool lockXZRotation = false;
-    private bool isRotating = false;
+    public bool isRotating = false;
     private Vector2 lookInput;
 
     public bool IsRotationLocked { get; private set; } = false;
@@ -51,7 +51,6 @@ public class PlayerRotation : MonoBehaviour
         float defaultRotation = lookInput.x * rotationSpeed * Time.deltaTime;  // Horizontal mouse → Yaw
         float pitch = -lookInput.y * rotationSpeed * Time.deltaTime; // Vertical mouse → Pitch
         float yaw = -lookInput.x * rotationSpeed * Time.deltaTime;  // Horizontal mouse → Yaw
-        
 
         if (!isRotating) 
         {

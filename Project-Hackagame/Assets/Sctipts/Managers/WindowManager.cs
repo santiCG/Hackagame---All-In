@@ -17,6 +17,9 @@ public class WindowManager : MonoBehaviour
     private int totalWindows;
     private int cleanedWindows;
 
+    public AudioSource primeraVentana;
+    public AudioSource todasVentanas;
+
     private Dialogue dialogueScript;
 
     private void Awake()
@@ -52,6 +55,7 @@ public class WindowManager : MonoBehaviour
 
         if(cleanedWindows == 1){
             dialogueScript.TriggerDialogue(1);
+            primeraVentana.Play();
         }
 
         UpdateObjectiveUI();
@@ -60,7 +64,7 @@ public class WindowManager : MonoBehaviour
         if (cleanedWindows >= totalWindows)
         {
             dialogueScript.TriggerDialogue(3);
-
+            todasVentanas.Play();
             CompleteAllObjectives();
         }
     }
