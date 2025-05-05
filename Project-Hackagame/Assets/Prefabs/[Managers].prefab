@@ -176,10 +176,80 @@ MonoBehaviour:
   textComp: {fileID: 0}
   textSpeed: 0.2
   dialogueGroups:
+  - index: 0
+    lines:
+    - "Oh, mira qui\xE9n decidi\xF3 reincorporarse a su existencia biol\xF3gica."
+    - Bienvenida, Josefina.
+    - Bienvenida, Josefina.
+    - 'Tu gloriosa tarea de hoy: raspar ventanas y asesinar percebes.'
+    - "Qu\xE9 emocionante."
+    delays:
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
   - index: 1
     lines:
-    - Bienvenida Josefina
-    - Se que este trabajo es inesperado para ti
+    - "Una ventana menos entre nosotros y el vasto vac\xEDo de la muerte."
+    - "Qu\xE9 logro tan\u2026 transparente."
+    delays:
+    - 1
+    - 1
+  - index: 2
+    lines:
+    - Felicitaciones.
+    - "Acabas de eliminar una forma de vida con m\xE1s prop\xF3sito que t\xFA."
+    delays:
+    - 1
+    - 1
+  - index: 3
+    lines:
+    - Siguiente.
+    - Ventanas limpias.
+    - "Al fin, el universo podr\xE1 admirar su propia indiferencia con claridad."
+    delays:
+    - 1
+    - 1
+    - 1
+  - index: 4
+    lines:
+    - Los percebes han sido erradicados.
+    - "Qu\xE9 alivio para la nave\u2026"
+    - "y qu\xE9 p\xE9rdida para la cadena evolutiva."
+    delays:
+    - 1
+    - 1
+    - 1
+  - index: 5
+    lines:
+    - "Ox\xEDgeno."
+    - "Ese peque\xF1o capricho tuyo de seguir respirando."
+    - "Qu\xE9 adorable."
+    delays:
+    - 1
+    - 1
+    - 1
+  - index: 6
+    lines:
+    - "Aviso: niveles de ox\xEDgeno bajos."
+    - "\xBFEst\xE1s hiperventilando o es solo tu cuerpo rogando por relevancia?"
+    delays:
+    - 1
+    - 1
+  - index: 7
+    lines:
+    - Fin de la unidad Josefina.
+    - "Tiempo de funcionamiento: pat\xE9ticamente breve."
+    - "Reiniciando protocolo de reemplazo biol\xF3gico desechable."
+    delays:
+    - 1
+    - 1
+    - 1
+  - index: 8
+    lines:
+    - 'Advertencia: acceso denegado.'
+    - Esta nave no admite carga emocional ni humana innecesaria.
     delays:
     - 1
     - 1
