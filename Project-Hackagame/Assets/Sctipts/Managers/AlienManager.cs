@@ -17,6 +17,20 @@ public class AlienManager : MonoBehaviour
     private int totalBarnacles;
     private int eliminatedBarnacles;
 
+    private Dialogue dialogueScript;
+
+    private void Awake()
+    {
+        // Ensure the GameManager is assigned
+        if (gameManager == null)
+        {
+            gameManager = FindFirstObjectByType<GameManager>();
+        }
+
+        // Ensure the Dialogue script is assigned
+        dialogueScript = FindFirstObjectByType<Dialogue>();
+    }
+
     private void Start()
     {
         // Initialize the total barnacles and update the UI
@@ -35,11 +49,18 @@ public class AlienManager : MonoBehaviour
     {
         // Increment the eliminated barnacles count
         eliminatedBarnacles++;
+
+        if(eliminatedBarnacles == 1){
+            dialogueScript.TriggerDialogue(2);
+        }
+
         UpdateObjectiveUI();
 
         // Check if all barnacles are eliminated
         if (eliminatedBarnacles >= totalBarnacles)
         {
+            dialogueScript.TriggerDialogue(4);
+
             CompleteAllObjectives();
         }
     }

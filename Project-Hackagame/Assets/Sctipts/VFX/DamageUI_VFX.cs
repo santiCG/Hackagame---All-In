@@ -20,6 +20,24 @@ public class DamageUI_VFX : MonoBehaviour
     [SerializeField] private float maxLensDistortion = -0.5f; // Maximum lens distortion
     [SerializeField] private float initialLensDistortion = 0f; // Starting lens distortion
 
+    private Dialogue dialogueScript;
+    private bool firstAlmostDead = false;
+
+    private void Awake()
+    {
+        // Ensure the Post-Processing Volume is assigned
+        if (postProcessingVolume == null)
+        {
+            postProcessingVolume = FindFirstObjectByType<Volume>();
+        }
+
+        // Ensure the Dialogue script is assigned
+        if (dialogueScript == null)
+        {
+            dialogueScript = FindFirstObjectByType<Dialogue>();
+        }
+    }
+
     private void Start()
     {
         // Get the Vignette effect from the Volume
@@ -58,6 +76,12 @@ public class DamageUI_VFX : MonoBehaviour
 
         if (oxygen < oxygenThreshold)
         {
+            if(!firstAlmostDead)
+            {
+                firstAlmostDead = true;
+                dialogueScript.TriggerDialogue(6); // Trigger the almost dead dialogue
+            }
+
             // Calculate vignette intensity and smoothness based on oxygen level
             float intensity = Mathf.Lerp(0f, maxVignetteIntensity, (oxygenThreshold - oxygen) / oxygenThreshold);
             float smoothness = Mathf.Lerp(initialVignetteSmoothness, maxVignetteSmoothness, (oxygenThreshold - oxygen) / oxygenThreshold);

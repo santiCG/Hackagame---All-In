@@ -9,12 +9,18 @@ public class OxygenTank : MonoBehaviour, Iinteractable
     [SerializeField] private OxygenSystem oxygenSystem;
 
     public Outline outline;
+    private Dialogue dialogueScript;
     
     private void Awake()
     {
         if (oxygenSystem == null)
         {
             oxygenSystem = FindFirstObjectByType<OxygenSystem>();
+        }
+
+        if (dialogueScript == null)
+        {
+            dialogueScript = FindFirstObjectByType<Dialogue>();
         }
 
         outline = GetComponent<Outline>();
@@ -30,6 +36,11 @@ public class OxygenTank : MonoBehaviour, Iinteractable
     {
         if (currentUses > 0)
         {
+
+            if(currentUses == 1){
+                dialogueScript.TriggerDialogue(5);
+            }
+
             if (oxygenSystem != null)
             {
                 oxygenSystem.RefillOxygen(refillAmount);

@@ -16,6 +16,26 @@ public class OxygenSystem : MonoBehaviour
     [SerializeField] private DamageUI_VFX damageUIVFX;
     [SerializeField] private GameManager gameManager;
 
+    private Dialogue dialogueScript;
+
+    private void Awake()
+    {
+        if (oxygenFillImage == null)
+        {
+            oxygenFillImage = FindFirstObjectByType<Image>();
+        }
+
+        if (gameManager == null)
+        {
+            gameManager = FindFirstObjectByType<GameManager>();
+        }
+
+        if (dialogueScript == null)
+        {
+            dialogueScript = FindFirstObjectByType<Dialogue>();
+        }
+    }
+
     private void Start()
     {
         currentOxygen = maxOxygen;

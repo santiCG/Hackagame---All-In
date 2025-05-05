@@ -17,6 +17,20 @@ public class WindowManager : MonoBehaviour
     private int totalWindows;
     private int cleanedWindows;
 
+    private Dialogue dialogueScript;
+
+    private void Awake()
+    {
+        // Ensure the GameManager is assigned
+        if (gameManager == null)
+        {
+            gameManager = FindFirstObjectByType<GameManager>();
+        }
+
+        // Ensure the Dialogue script is assigned
+        dialogueScript = FindFirstObjectByType<Dialogue>();
+    }
+
     private void Start()
     {
         // Initialize the total windows and update the UI
@@ -35,11 +49,18 @@ public class WindowManager : MonoBehaviour
     {
         // Increment the cleaned windows count
         cleanedWindows++;
+
+        if(cleanedWindows == 1){
+            dialogueScript.TriggerDialogue(1);
+        }
+
         UpdateObjectiveUI();
 
         // Check if all windows are cleaned
         if (cleanedWindows >= totalWindows)
         {
+            dialogueScript.TriggerDialogue(3);
+
             CompleteAllObjectives();
         }
     }

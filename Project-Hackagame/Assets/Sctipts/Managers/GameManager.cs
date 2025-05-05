@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
         {
             deathPanel.SetActive(false); // Ensure the death panel is hidden at the start
         }
+
+        dialogueScript.TriggerDialogue(0);
     }
 
     public void CompleteObjective()
@@ -48,6 +50,9 @@ public class GameManager : MonoBehaviour
     public void HandlePlayerDeath()
     {
         Debug.Log("Player has died!");
+
+        dialogueScript.TriggerDialogue(7);
+
         if (damageUIVFX != null)
         {
             damageUIVFX.FadeToBlack(() =>

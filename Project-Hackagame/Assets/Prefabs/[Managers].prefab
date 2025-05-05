@@ -174,17 +174,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComp: {fileID: 0}
-  textSpeed: 0.2
+  textSpeed: 0.05
   dialogueGroups:
   - index: 0
     lines:
     - "Oh, mira qui\xE9n decidi\xF3 reincorporarse a su existencia biol\xF3gica."
     - Bienvenida, Josefina.
-    - Bienvenida, Josefina.
     - 'Tu gloriosa tarea de hoy: raspar ventanas y asesinar percebes.'
     - "Qu\xE9 emocionante."
     delays:
-    - 1
     - 1
     - 1
     - 1
@@ -250,6 +248,13 @@ MonoBehaviour:
     lines:
     - 'Advertencia: acceso denegado.'
     - Esta nave no admite carga emocional ni humana innecesaria.
+    delays:
+    - 1
+    - 1
+  - index: 9
+    lines:
+    - Abre esa exclusa y sal de aqui.
+    - Te quiero chambiando cuanto antes.
     delays:
     - 1
     - 1
